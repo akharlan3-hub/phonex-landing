@@ -12,8 +12,8 @@ const PORT = process.env.PORT || 3000;
 // НАСТРОЙКИ TELEGRAM
 // ===============================
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+
 
 
 
@@ -22,6 +22,11 @@ const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 // ===============================
 app.use(express.json());
 app.use(express.static("public"));
+
+app.post("/api/lead", (req, res) => {
+  console.log("📥 POST /api/lead", req.body);
+  res.json({ success: true });
+});
 
 // ===============================
 // DATABASE
@@ -71,18 +76,17 @@ app.post("/api/lead", async (req, res) => {
 
       // 🔔 TELEGRAM → личка + группа
       for (const chatId of CHAT_IDS) {
-        try {
-          const tgRes = await fetch(
-            `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                chat_id: chatId,
-                text: message
-              })
-            }
-          );
+        await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+          })
+        });
+      }
+
+
 
           const tgText = await tgRes.text();
           console.log(`Telegram response (${chatId}):`, tgText);
