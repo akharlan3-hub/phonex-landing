@@ -453,3 +453,8 @@ body {
   position: relative !important;
   z-index: 9999 !important;
 }
+.lang-btn {
+  padding: 8px 14px;
+  font-size: 13px;
+  margin-left: 10px;
+}

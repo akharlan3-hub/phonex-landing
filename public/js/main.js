@@ -2,14 +2,15 @@ console.log("✅ main.js подключен");
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".contact-form");
+
   if (!form) {
-    console.error("Форма не найдена");
+    console.error("❌ Форма .contact-form не найдена");
     return;
   }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log("📨 клин по форме");
+    console.log("📨 форма отправлена");
 
     const formData = new FormData(form);
 
@@ -30,14 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
       console.log("Ответ сервера:", data);
 
-      if (!data.success) throw new Error();
+      if (!data.success) {
+        throw new Error("Server error");
+      }
 
-      alert("Заявка отправлена!");
+      alert("Заявка отправлена! Мы свяжемся с вами.");
       form.reset();
 
     } catch (err) {
-      console.error(err);
-      alert("Ошибка отправки");
+      console.error("Ошибка отправки:", err);
+      alert("Ошибка отправки. Попробуйте позже.");
     }
   });
 });
