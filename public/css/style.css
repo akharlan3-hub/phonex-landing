@@ -158,7 +158,7 @@ body {
   line-height: 1.6;
 }
 
-/* ================= CONTACT (COMPACT & CENTERED) ================= */
+/* ================= CONTACT FORM (ORIGINAL DARK CARD) ================= */
 
 .contact {
   margin-top: 140px;
@@ -166,46 +166,74 @@ body {
 }
 
 .contact h2 {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .contact-hint {
   color: var(--text-muted);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
+/* 🧊 САМА ФОРМА-КАРТОЧКА */
 .contact-form {
   width: 100%;
-  max-width: 420px;   /* 🔑 компактная ширина */
-  margin: 0 auto;     /* 🔑 строго по центру */
+  max-width: 360px;          /* 🔑 ещё меньше */
+  margin: 0 auto;
+  padding: 26px 24px;
+  background: rgba(15, 25, 45, 0.85); /* 🔑 тёмный фон */
+  border-radius: 22px;
   display: flex;
   flex-direction: column;
   gap: 14px;
+  backdrop-filter: blur(8px);
+
+  /* ✨ мягкое свечение снизу */
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 0 40px rgba(42, 169, 255, 0.15);
 }
 
+/* INPUTS */
 .contact-form input {
-  height: 48px;
-  background: rgba(255,255,255,0.95);
-  border-radius: 14px;
+  height: 44px;
+  background: rgba(255,255,255,0.96);
   border: none;
-  padding: 0 16px;
-  font-size: 14.5px;
+  border-radius: 12px;
+  padding: 0 14px;
+  font-size: 14px;
   outline: none;
   transition: all 0.3s ease;
+}
+
+.contact-form input::placeholder {
+  color: #7b8ba8;
 }
 
 .contact-form input:focus {
   box-shadow:
     0 0 0 2px rgba(42,169,255,0.35),
-    0 0 24px rgba(42,169,255,0.45);
+    0 0 22px rgba(42,169,255,0.45);
 }
 
+/* BUTTON */
 .contact-form button {
-  height: 48px;
   margin-top: 10px;
-  align-self: center; /* 🔑 кнопка по центру */
-  padding: 0 28px;
+  height: 44px;
+  align-self: center;
+  padding: 0 26px;
+  font-size: 14.5px;
+  border-radius: 14px;
+  box-shadow:
+    0 10px 30px rgba(42,169,255,0.35);
+  transition: all 0.3s ease;
 }
+
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 44px rgba(42,169,255,0.55);
+}
+
 
 
 /* ================= FOOTER ================= */
