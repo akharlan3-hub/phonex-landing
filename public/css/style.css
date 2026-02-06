@@ -210,29 +210,25 @@ body {
 }
 /* ===== FEATURE CARD GLOW ===== */
 
+/* ===== FEATURE CARD (BASE) ===== */
+
 .feature-card {
+  background: rgba(15, 25, 45, 0.85);
+  border-radius: 24px;
+  padding: 28px 26px;
+  transition: all 0.35s ease;
   position: relative;
-  overflow: hidden;
+
+  /* ВАЖНО: базовое мягкое свечение СНИЗУ */
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    0 0 0 rgba(0, 153, 255, 0);
 }
 
-.feature-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(
-    circle at top left,
-    rgba(0, 153, 255, 0.15),
-    transparent 60%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
 
-.feature-card:hover::after {
-  opacity: 1;
-}
+
+
+
 .contact-form button {
   box-shadow:
     0 8px 30px rgba(0, 153, 255, 0.35);
