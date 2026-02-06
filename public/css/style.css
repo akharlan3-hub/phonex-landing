@@ -264,3 +264,19 @@ body {
     font-size: 36px;
   }
 }
+/* ===== WHY TOP TEXT (CENTERED & SEPARATED) ===== */
+
+.why-top {
+  max-width: 880px;              /* 🔑 не на всю ширину */
+  margin: 0 auto 64px;           /* 🔑 центр + отступ вниз */
+  padding: 0 20px;
+
+  text-align: center;            /* 🔑 строго по центру */
+  font-size: 20px;
+  line-height: 1.5;
+
+  color: var(--text-muted);
+}
+.why {
+  margin-top: 120px;
+}
