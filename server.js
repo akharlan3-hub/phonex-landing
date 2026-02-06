@@ -7,26 +7,23 @@ const fetch = require("node-fetch");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
 // ===============================
-// НАСТРОЙКИ TELEGRAM
+// TELEGRAM
 // ===============================
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+const TELEGRAM_CHAT_IDS = process.env.TELEGRAM_CHAT_IDS
+  ? process.env.TELEGRAM_CHAT_IDS.split(",").map(id => id.trim())
+  : [];
 
-
-
+if (!TELEGRAM_BOT_TOKEN || TELEGRAM_CHAT_IDS.length === 0) {
+  console.error("❌ Telegram ENV variables are missing");
+}
 
 // ===============================
 // MIDDLEWARE
 // ===============================
 app.use(express.json());
 app.use(express.static("public"));
-
-app.post("/api/lead", (req, res) => {
-  console.log("📥 POST /api/lead", req.body);
-  res.json({ success: true });
-});
 
 // ===============================
 // DATABASE
@@ -51,48 +48,49 @@ app.post("/api/lead", async (req, res) => {
   const { name, email, telegram, page } = req.body;
 
   if (!name || !email) {
-    return res.status(400).json({ error: "Invalid data" });
+    return res.status(400).json({ success: false });
   }
 
   db.run(
     `INSERT INTO leads (name, email, telegram, page)
      VALUES (?, ?, ?, ?)`,
     [name, email, telegram, page],
-    async function (err) {
+    async (err) => {
       if (err) {
-        console.error("DB error:", err);
-        return res.status(500).json({ error: "DB error" });
+        console.error("❌ DB error:", err);
+        return res.status(500).json({ success: false });
       }
 
       const message = `
-📩 Новая заявка с сайта PhoneX
+📩 New lead from PhoneX
 
-👤 Имя: ${name}
+👤 Name: ${name}
 📧 Email: ${email}
 💬 Telegram: ${telegram || "—"}
-🌐 Страница: ${page}
-🕒 Время: ${new Date().toLocaleString()}
+🌐 Page: ${page}
+🕒 Time: ${new Date().toLocaleString()}
       `;
 
       // 🔔 TELEGRAM → личка + группа
-      for (const chatId of CHAT_IDS) {
-        await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: message
-          })
-        });
-      }
-
-
+      for (const chatId of TELEGRAM_CHAT_IDS) {
+        try {
+          const tgRes = await fetch(
+            `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text: message
+              })
+            }
+          );
 
           const tgText = await tgRes.text();
-          console.log(`Telegram response (${chatId}):`, tgText);
+          console.log(`✅ Telegram (${chatId}):`, tgText);
 
         } catch (error) {
-          console.error(`Telegram ERROR (${chatId}):`, error);
+          console.error(`❌ Telegram ERROR (${chatId}):`, error);
         }
       }
 
@@ -103,5 +101,5 @@ app.post("/api/lead", async (req, res) => {
 
 // ===============================
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
