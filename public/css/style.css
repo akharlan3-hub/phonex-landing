@@ -27,18 +27,23 @@ body {
 /* ================= HEADER ================= */
 
 .header {
-  padding: 20px 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
 }
 
 .header-inner {
-  display: flex;
+  width: 100%;
+  display: flex;                 /* ⬅️ ЭТОГО НЕ ХВАТАЛО */
   justify-content: space-between;
   align-items: center;
 }
 
-.logo {
-  height: 42px;
+.logo img {
+  height: 48px;                  /* ⬅️ увеличиваем ТОЛЬКО картинку */
+  width: auto;
 }
+
 
 /* ================= BUTTONS ================= */
 
@@ -134,7 +139,7 @@ body {
   position: relative;
   transition: all 0.35s ease;
 
-  /* Р±Р°Р·РѕРІР°СЏ С‚РµРЅСЊ */
+  /* базовая тень */
   box-shadow:
     0 25px 60px rgba(0,0,0,0.55);
 }
@@ -142,7 +147,7 @@ body {
 .feature-card:hover {
   transform: translateY(-8px);
 
-  /* рџ’™ РЎР’Р•Р§Р•РќРР• РџРћР” РљРђР РўРћР§РљРћР™ */
+  /* 💙 СВЕЧЕНИЕ ПОД КАРТОЧКОЙ */
   box-shadow:
     0 35px 80px rgba(0,0,0,0.7),
     0 0 45px rgba(42,169,255,0.45);
@@ -174,20 +179,20 @@ body {
   margin-bottom: 28px;
 }
 
-/* рџ§Љ РЎРђРњРђ Р¤РћР РњРђ-РљРђР РўРћР§РљРђ */
+/* 🧊 САМА ФОРМА-КАРТОЧКА */
 .contact-form {
   width: 100%;
-  max-width: 360px;          /* рџ”‘ РµС‰С‘ РјРµРЅСЊС€Рµ */
+  max-width: 360px;          /* 🔑 ещё меньше */
   margin: 0 auto;
   padding: 26px 24px;
-  background: rgba(15, 25, 45, 0.85); /* рџ”‘ С‚С‘РјРЅС‹Р№ С„РѕРЅ */
+  background: rgba(15, 25, 45, 0.85); /* 🔑 тёмный фон */
   border-radius: 22px;
   display: flex;
   flex-direction: column;
   gap: 14px;
   backdrop-filter: blur(8px);
 
-  /* вњЁ РјСЏРіРєРѕРµ СЃРІРµС‡РµРЅРёРµ СЃРЅРёР·Сѓ */
+  /* ✨ мягкое свечение снизу */
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.55),
     0 0 40px rgba(42, 169, 255, 0.15);
@@ -197,19 +202,19 @@ body {
 
 .contact-form input {
   height: 44px;
-  background: rgba(10, 20, 40, 0.85); /* рџ”‘ С‚С‘РјРЅС‹Р№ С„РѕРЅ */
+  background: rgba(10, 20, 40, 0.85); /* 🔑 тёмный фон */
   border: 1px solid rgba(42,169,255,0.25);
   border-radius: 12px;
   padding: 0 14px;
   font-size: 14px;
-  color: #ffffff; /* СЃРІРµС‚Р»С‹Р№ С‚РµРєСЃС‚ */
+  color: #ffffff; /* светлый текст */
   outline: none;
   transition: all 0.3s ease;
   backdrop-filter: blur(6px);
 }
 
 .contact-form input::placeholder {
-  color: rgba(169,196,224,0.65); /* РїСЂРёРіР»СѓС€С‘РЅРЅС‹Р№ */
+  color: rgba(169,196,224,0.65); /* приглушённый */
 }
 
 .contact-form input:focus {
@@ -255,7 +260,7 @@ body {
 
 /* ================= MOBILE ================= */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .features {
     grid-template-columns: 1fr;
   }
@@ -263,15 +268,20 @@ body {
   .hero h1 {
     font-size: 36px;
   }
+
+  .logo img {
+    height: 40px;
+  }
 }
+
 /* ===== WHY TOP TEXT (CENTERED & SEPARATED) ===== */
 
 .why-top {
-  max-width: 880px;              /* рџ”‘ РЅРµ РЅР° РІСЃСЋ С€РёСЂРёРЅСѓ */
-  margin: 0 auto 64px;           /* рџ”‘ С†РµРЅС‚СЂ + РѕС‚СЃС‚СѓРї РІРЅРёР· */
+  max-width: 880px;              /* 🔑 не на всю ширину */
+  margin: 0 auto 64px;           /* 🔑 центр + отступ вниз */
   padding: 0 20px;
 
-  text-align: center;            /* рџ”‘ СЃС‚СЂРѕРіРѕ РїРѕ С†РµРЅС‚СЂСѓ */
+  text-align: center;            /* 🔑 строго по центру */
   font-size: 20px;
   line-height: 1.5;
 
