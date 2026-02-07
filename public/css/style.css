@@ -76,7 +76,7 @@ body {
 /* ================= HERO ================= */
 
 .hero {
-  
+  min-height: calc(100vh - 64px);
   background:
     linear-gradient(
       90deg,
@@ -87,8 +87,8 @@ body {
     url("../assets/hero-assistant-bg.png");
   background-size: cover;
   background-position: center;
-  height: calc(100vh - 64px);
 }
+
 
 
 
