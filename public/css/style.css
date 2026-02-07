@@ -76,7 +76,7 @@ body {
 /* ================= HERO ================= */
 
 .hero {
-  height: 100vh;
+  
   background:
     linear-gradient(
       90deg,
@@ -87,8 +87,10 @@ body {
     url("../assets/hero-assistant-bg.png");
   background-size: cover;
   background-position: center;
-  padding-top: 64px;
+  height: calc(100vh - 64px);
 }
+
+
 
 .hero-grid {
   height: 100%;
@@ -261,13 +263,18 @@ body {
 
 /* ================= MOBILE ================= */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .features {
     grid-template-columns: 1fr;
   }
-
+ .hero {
+    height: calc(100vh - 56px);
+  }
   .hero h1 {
     font-size: 36px;
+  }
+  .logo img {
+    height: 40px;
   }
 }
 /* ===== WHY TOP TEXT (CENTERED & SEPARATED) ===== */
