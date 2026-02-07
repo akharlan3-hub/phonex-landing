@@ -87,6 +87,7 @@ body {
     url("../assets/hero-assistant-bg.png");
   background-size: cover;
   background-position: center;
+  padding-top: 64px;
 }
 
 .hero-grid {
