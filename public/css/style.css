@@ -27,17 +27,19 @@ body {
 /* ================= HEADER ================= */
 
 .header {
-  padding: 20px 0;
+  height: 64px;              /* фиксированная высота */
+  display: flex;
+  align-items: center;       /* вертикальное центрирование */
 }
 
 .header-inner {
-  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .logo {
   height: 56px;
+  width: auto;
 }
 
 /* ================= BUTTONS ================= */
