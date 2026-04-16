@@ -27,7 +27,7 @@ body {
 }
 
 .logo img {
-  height: 32px;
+  height: 38px;
   width: auto;
   display: block;
 }
@@ -230,6 +230,6 @@ body {
 
 @media (max-width: 480px) {
   .logo img {
-    height: 24px;
+    height: 28px;
   }
 }
