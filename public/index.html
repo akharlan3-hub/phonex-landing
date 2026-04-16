@@ -11,7 +11,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
-
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -119,12 +119,19 @@
     <h2>Связаться с нами</h2>
     <p class="contact-hint">Оставьте заявку — мы свяжемся с вами 👇</p>
 
-    <form class="contact-form">
+    <form class="contact-form" 
+      action="https://formspree.io/f/mqewpknn" 
+      method="POST">
+  
      <input type="text" name="name" placeholder="Имя" required>
      <input type="email" name="email" placeholder="Email" required>
      <input type="text" name="telegram" placeholder="Telegram">
-      <button type="submit" class="btn btn-primary">Отправить</button>
-    </form>
+  
+       <!-- Капча уже есть -->
+     <div class="g-recaptcha" data-sitekey="6LcwbLosAAAAA070SSGHhs9YfQJ2gvnwAmvcgohI"></div>
+  
+     <button type="submit" class="btn btn-primary">Отправить</button>
+   </form>
 
   </div>
 </section>
