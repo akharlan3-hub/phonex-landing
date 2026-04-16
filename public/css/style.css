@@ -37,7 +37,15 @@ body {
 }
 
 .logo {
-  height: 56px;
+  height: 32px;  /* было 42px — уменьшили */
+  transition: all 0.3s ease;
+}
+
+/* Для совсем маленьких экранов — ещё меньше */
+@media (max-width: 480px) {
+  .logo {
+    height: 26px;
+  }
 }
 
 /* ================= BUTTONS ================= */
