@@ -36,16 +36,10 @@ body {
   align-items: center;
 }
 
+/* 🔽 ИСПРАВЛЕНО: логотип уменьшен с 42px до 32px */
 .logo {
-  height: 32px;  /* было 42px — уменьшили */
+  height: 32px;
   transition: all 0.3s ease;
-}
-
-/* Для совсем маленьких экранов — ещё меньше */
-@media (max-width: 480px) {
-  .logo {
-    height: 26px;
-  }
 }
 
 /* ================= BUTTONS ================= */
@@ -247,8 +241,6 @@ body {
     0 16px 44px rgba(42,169,255,0.55);
 }
 
-
-
 /* ================= FOOTER ================= */
 
 .footer {
@@ -271,12 +263,14 @@ body {
   .hero h1 {
     font-size: 36px;
   }
-  
-  .hero {
-    background-position: 75% center; 
-  }
 }
 
+/* 🔽 ДОБАВЛЕНО: логотип ещё меньше на мобильных */
+@media (max-width: 480px) {
+  .logo {
+    height: 26px;
+  }
+}
 
 /* ===== WHY TOP TEXT (CENTERED & SEPARATED) ===== */
 
